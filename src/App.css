@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +40,33 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.medicine-detail-table :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-title, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-footer, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-cell, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-thead>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody>tr>td, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small tfoot>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small tfoot>tr>td {
+    padding: 2px 8px  !important;
+}
+
+.custom-administer .ant-modal-header {
+  background-color: #4e8dbd;
+  padding: 12px 18px;
+}
+
+.custom-administer .ant-modal-title {
+  color: #fff;       /* <-- This will change the text color */
+  font-weight: 500;  /* optional, make it look better */
+}
+
+.custom-administer .ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0; 
+}
+
+.custom-administer .ant-modal-close-x {
+  color: white !important;
+}
+
+.ant-table-cell {
+  padding: 6px 8px !important;  /* adjust as you like */
 }
