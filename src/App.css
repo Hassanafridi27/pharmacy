@@ -70,3 +70,27 @@
 .ant-table-cell {
   padding: 6px 8px !important;  /* adjust as you like */
 }
+
+.smart-scroll-table .ant-table-body {
+  scrollbar-width: thin;              /* Firefox */
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.smart-scroll-table .ant-table-body::-webkit-scrollbar {
+  width: 6px;   /* slim bar */
+  height: 6px;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-button {
+  display: none;  /* 🔥 removes arrows */
+}

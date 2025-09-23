@@ -417,27 +417,33 @@ const PrescriptionComponent = () => {
       render: (_, __, index) => <Checkbox style={{ marginLeft: 5 }}></Checkbox>,
 
       width: 30,
+
       onHeaderCell: () => ({ style: headerStyle }),
       onCell: () => ({ style: highlightedStyle }),
     },
 
-    {
-      title: "Medication Name",
-      dataIndex: "medicationName",
-      width: 230,
-      render: (_, record, index) => (
-        <Input.TextArea
-          size="small"
-          rows={2}
-          value={record.medicationName}
-          onChange={(e) =>
-            handleInputChange(index, "medicationName", e.target.value)
-          }
-        />
-      ),
-      onHeaderCell: () => ({ style: headerStyle }),
-      onCell: () => ({ style: highlightedStyle }),
-    },
+{
+  title: "Medication Name",
+  dataIndex: "medicationName",
+  width: 230,
+  render: (_, record, index) => (
+    <Input.TextArea
+      size="small"
+      autoSize={{ minRows: 1, maxRows: 5 }} // ✅ flexible height
+      value={record.medicationName}
+      onChange={(e) =>
+        handleInputChange(index, "medicationName", e.target.value)
+      }
+      style={{
+        fontSize: 12,
+        lineHeight: 1.5,
+        padding: "2px 6px",
+      }}
+    />
+  ),
+  onHeaderCell: () => ({ style: headerStyle }),
+  onCell: () => ({ style: highlightedStyle }),
+},
     {
       title: "Form",
       dataIndex: "form",
@@ -447,33 +453,38 @@ const PrescriptionComponent = () => {
           size="small"
           value={record.form}
           onChange={(e) => handleInputChange(index, "form", e.target.value)}
-        />
-      ),
-      onHeaderCell: () => ({ style: headerStyle }),
-      onCell: () => ({ style: highlightedStyle }),
-    },
-    {
-      title: "Prescription Detail",
-      dataIndex: "prescriptionDetail",
-      width: 300,
-      render: (_, record, index) => (
-        <Input.TextArea
-          rows={2}
-          size="small"
-          value={record.prescriptionDetail}
-          onChange={(e) =>
-            handleInputChange(index, "prescriptionDetail", e.target.value)
-          }
           style={{
             fontSize: 12,
-            lineHeight: "18px", // reduces row height
-            padding: "2px 6px", // less padding
+            lineHeight: 1.5, // ✅ cleaner and scalable
+            padding: "2px 6px",
           }}
         />
       ),
       onHeaderCell: () => ({ style: headerStyle }),
       onCell: () => ({ style: highlightedStyle }),
     },
+{
+  title: "Prescription Detail",
+  dataIndex: "prescriptionDetail",
+  width: 300,
+  render: (_, record, index) => (
+    <Input.TextArea
+      autoSize={{ minRows: 1, maxRows: 5 }} // ✅ flexible height
+      size="small"
+      value=""
+      onChange={(e) =>
+        handleInputChange(index, "prescriptionDetail", e.target.value)
+      }
+      style={{
+        fontSize: 12,
+        lineHeight: 1.5,
+        padding: "2px 6px",
+      }}
+    />
+  ),
+  onHeaderCell: () => ({ style: headerStyle }),
+  onCell: () => ({ style: highlightedStyle }),
+},
     {
       title: "Medication Name",
       dataIndex: "medicationName2",
@@ -485,30 +496,35 @@ const PrescriptionComponent = () => {
           onChange={(e) =>
             handleInputChange(index, "medicationName2", e.target.value)
           }
-        />
-      ),
-      onHeaderCell: () => ({ style: headerStyle }),
-    },
-    {
-      title: "Dispensing Detail",
-      dataIndex: "dispensingDetail",
-      width: 300,
-      render: (_, record, index) => (
-        <Input.TextArea
-          rows={2}
-          value={record.dispensingDetail}
-          onChange={(e) =>
-            handleInputChange(index, "dispensingDetail", e.target.value)
-          }
           style={{
             fontSize: 12,
-            lineHeight: "18px", // reduces row height
-            padding: "2px 6px", // less padding
+            lineHeight: 1.5, // ✅ added line-height
+            padding: "2px 6px", // ✅ optional, same as TextArea for consistency
           }}
         />
       ),
       onHeaderCell: () => ({ style: headerStyle }),
     },
+{
+  title: "Dispensing Detail",
+  dataIndex: "dispensingDetail",
+  width: 300,
+  render: (_, record, index) => (
+    <Input.TextArea
+      autoSize={{ minRows: 1, maxRows: 5 }} // ✅ flexible height
+      value=""
+      onChange={(e) =>
+        handleInputChange(index, "dispensingDetail", e.target.value)
+      }
+      style={{
+        fontSize: 12,
+        lineHeight: 1.5,
+        padding: "2px 6px",
+      }}
+    />
+  ),
+  onHeaderCell: () => ({ style: headerStyle }),
+},
     {
       title: "Qty",
       dataIndex: "qty",
@@ -517,6 +533,11 @@ const PrescriptionComponent = () => {
           size="small"
           value={record.qty}
           onChange={(e) => handleInputChange(index, "qty", e.target.value)}
+          style={{
+            fontSize: 12,
+            lineHeight: 1.5, // ✅ cleaner and scalable
+            padding: "2px 6px",
+          }}
         />
       ),
       onHeaderCell: () => ({ style: headerStyle }),
@@ -530,6 +551,11 @@ const PrescriptionComponent = () => {
           size="small"
           value={record.amount}
           onChange={(e) => handleInputChange(index, "amount", e.target.value)}
+          style={{
+            fontSize: 12,
+            lineHeight: 1.5, // ✅ cleaner and scalable
+            padding: "2px 6px",
+          }}
         />
       ),
       onHeaderCell: () => ({ style: headerStyle }),
@@ -589,6 +615,13 @@ const PrescriptionComponent = () => {
     0
   );
 
+  const [selected, setSelected] = useState(null);
+
+  const handleChanges = (value) => {
+    setSelected(value === selected ? null : value); // toggle off if same
+  };
+
+
   return (
     <>
       <div
@@ -596,11 +629,11 @@ const PrescriptionComponent = () => {
           color: "#fff",
           padding: "18px",
           borderRadius: "6px",
-          marginTop: "-10px",
+          marginTop: "-24px",
         }}
       >
         <Row
-          gutter={[]}
+          gutter={3}
           style={{
             marginBottom: 65,
             marginLeft: -40,
@@ -746,6 +779,7 @@ const PrescriptionComponent = () => {
               flexDirection: "column",
               height: "100%",
               marginBottom: 4,
+              marginRight: 0,
             }}
           >
             <Tabs
@@ -763,8 +797,12 @@ const PrescriptionComponent = () => {
               tabBarStyle={{ marginBottom: 0 }}
             >
               {/* === Allergies Tab === */}
-              <TabPane tab="Allergies" key="allergies">
-                <div style={{ height: 120, overflow: "hidden", width: "100%" }}>
+              <TabPane
+                tab="Allergies"
+                key="allergies"
+                // style={{ marginRight: 21 }}
+              >
+                <div style={{ overflow: "hidden" }}>
                   <Table
                     dataSource={allergyData}
                     columns={allergyColumns}
@@ -773,15 +811,16 @@ const PrescriptionComponent = () => {
                     bordered
                     scroll={{ y: 160 }}
                     className="small-font-table"
-                    style={{ background: "none", width: "100%" }}
+                    style={{ background: "none" }}
                     locale={{ emptyText: "No lab results found" }}
+                    scrollbar={{ alwaysVisible: false }}
                   />
                 </div>
               </TabPane>
 
               {/* === Lab Results Tab === */}
               <TabPane tab="Lab Result" key="lab">
-                <div style={{ overflow: "hidden", width: "100%" }}>
+                <div style={{ overflow: "hidden" }}>
                   <Table
                     dataSource={allergyData}
                     columns={allergyColumns2}
@@ -790,7 +829,7 @@ const PrescriptionComponent = () => {
                     bordered
                     scroll={{ y: 160 }}
                     className="small-font-table"
-                    style={{ background: "none", width: "100%" }}
+                    style={{ background: "none" }}
                     locale={{ emptyText: "No lab results found" }}
                   />
                 </div>
@@ -932,7 +971,7 @@ const PrescriptionComponent = () => {
         <Row
           justify="space-between"
           align="middle"
-          style={{ padding: "8px 1px" }}
+          style={{ padding: "8px 1px", marginTop: -6 }}
           gutter={[]}
         >
           <Col>
@@ -961,11 +1000,12 @@ const PrescriptionComponent = () => {
           columns={columns}
           pagination={false}
           className="medicine-detail-table"
+          style={{ marginTop: -6 }}
           bordered
           size="small"
         />
 
-        <Row justify="end" style={{ marginTop: 10 }}>
+        <Row justify="end" style={{ marginTop: 0 }}>
           <Col span={24}>
             <span style={{ marginLeft: "980px" }}>
               {" "}
@@ -987,8 +1027,8 @@ const PrescriptionComponent = () => {
           style={{
             border: "1px solid #ccc",
             borderRadius: 4,
-            width: "80%",
-            marginTop: "2px",
+            width: "62%",
+            marginTop: "0px",
             marginLeft: "auto", // 🔹 Pushes div to the right
             marginRight: 0,
           }}
@@ -999,70 +1039,122 @@ const PrescriptionComponent = () => {
               color: "#fff",
               padding: "6px 12px",
               margin: 0,
-              borderTopLeftRadius: 4,
-              borderTopRightRadius: 4,
+              borderTopLeftRadius: 6,
+              borderTopRightRadius: 6,
               fontSize: 14,
             }}
           >
             Current Transaction Detail
           </h4>
 
-          <div style={{ padding: 12 }}>
+          <div style={{ padding: 8 }}>
             {/* Row 1 */}
-            <Row gutter={16} align="middle" style={{ marginBottom: 12 }}>
+            <Row gutter={4} align="middle" style={{ marginBottom: -2 }}>
               <Col>
-                <Checkbox>Cash</Checkbox>
+                <Checkbox
+                  checked={selected === "cash"}
+                  onChange={() => handleChanges("cash")}
+                >
+                  Cash
+                </Checkbox>
               </Col>
               <Col>
-                <Checkbox>Credit Card</Checkbox>
+                <Checkbox
+                  checked={selected === "credit"}
+                  onChange={() => handleChanges("credit")}
+                >
+                  Credit Card
+                </Checkbox>
+              </Col>
+              <Col>
+                <Checkbox
+                  checked={selected === "online"}
+                  onChange={() => handleChanges("online")}
+                >
+                  Online
+                </Checkbox>
               </Col>
 
               {/* Add some spacing before inputs */}
               <Col flex="auto" />
 
               <Col>
-                <Form.Item label="Discount Amount" style={{ marginBottom: 0 }}>
-                  <Input style={{ width: 150 }} />
+                <Form.Item
+                  label="Discount Amount"
+                  style={{ marginBottom: 0, marginRight: 8 }}
+                >
+                  <Input
+                    style={{
+                      width: 90,
+                      fontSize: 12,
+                      lineHeight: 1.5, // ✅ added line-height
+                      padding: "2px 6px", // optional, for consistent spacing
+                    }}
+                  />
                 </Form.Item>
               </Col>
 
               <Col>
                 <Form.Item label="Payment" style={{ marginBottom: 0 }}>
-                  <Input style={{ width: 150 }} />
+                  <Input
+                    style={{
+                      width: 90,
+                      fontSize: 12,
+                      lineHeight: 1.5, // ✅ consistent line height
+                      padding: "2px 6px", // ✅ optional, same as other inputs
+                    }}
+                  />
                 </Form.Item>
               </Col>
             </Row>
 
             {/* Row 2 */}
-            <Row gutter={16} align="middle">
+            <Row gutter={26} align="middle">
               <Col>
                 <Checkbox>No Cash</Checkbox>
               </Col>
 
-              <Col>
-                <Input size="small" style={{ width: 80 }} />{" "}
-                <Input size="small" style={{ width: 200 }} />
+              <Col style={{ marginLeft: -22 }}>
+                <Input size="small" style={{ width: 70 }} />{" "}
+                <Input size="small" style={{ width: 190 }} />
               </Col>
 
               {/* Add space before last two */}
               <Col flex="auto" />
 
               <Col>
-                <Form.Item label="Charge to Panel" style={{ marginBottom: 0 }}>
-                  <Input style={{ width: 150 }} />
+                <Form.Item
+                  label="Charge to Panel"
+                  style={{ marginBottom: 0, marginRight: -18 }}
+                >
+                  <Input
+                    style={{
+                      width: 90,
+                      fontSize: 12,
+                      lineHeight: 1.5, // ✅ consistent line height
+                      padding: "2px 6px", // ✅ matches other inputs
+                    }}
+                  />
                 </Form.Item>
               </Col>
 
               <Col>
                 <Form.Item label="To Return" style={{ marginBottom: 0 }}>
-                  <Input style={{ width: 150 }} />
+                  <Input
+                    style={{
+                      width: 90,
+                      fontSize: 12,
+                      lineHeight: 1.5, // ✅ consistent line height
+                      padding: "2px 6px", // ✅ same as other inputs
+                    }}
+                  />
                 </Form.Item>
               </Col>
             </Row>
           </div>
         </div>
 
-        <Row justify="end" style={{ marginTop: 20 }}>
+        <Row justify="end" style={{ marginTop: 3 }}>
           <Space>
             <Button type="primary" style={{ background: "green" }}>
               Save
@@ -1960,20 +2052,18 @@ const WalkingComponent = () => {
           size="small"
         />
 
-        <Row justify="end" style={{ marginTop: 10 }}>
-          <Col span={24}>
-            <span style={{ marginLeft: "980px" }}>
-              {" "}
+        <Row justify="end" gutter={[16, 8]} style={{ marginTop: 10 }}>
+          <Col xs={24} sm="auto">
+            <span>
               Item Count: <strong>{itemCount}</strong>
             </span>
-            <span style={{ marginLeft: "20px" }}>
-              {" "}
+          </Col>
+
+          <Col xs={24} sm="auto">
+            <span>
               Total Amount: <strong>{totalAmount}</strong>
             </span>
           </Col>
-          {/* <Col span={12} style={{ textAlign: "right" }}>
-          Total Amount: <strong>{totalAmount}</strong>
-        </Col> */}
         </Row>
 
         {/* <Divider /> */}
@@ -2094,12 +2184,12 @@ const App = () => {
     <>
       <Navbar />
       <Sidebar />
-      <div style={{ marginLeft: 210, padding: "10px", fontSize: "14px" }}>
+      <div style={{ marginLeft: 210, padding: "8px", fontSize: "14px" }}>
         {/* Dispensing Type */}
         <Row
           align="middle"
           gutter={16}
-          style={{ marginBottom: 0, marginLeft: -30 }}
+          style={{ marginBottom: 0, marginLeft: -30, marginTop: "-4px" }}
         >
           <Col>
             <strong>Dispensing Type</strong>
@@ -2109,9 +2199,14 @@ const App = () => {
               defaultValue="prescription"
               onChange={(e) => setValue(e.target.value)}
               value={value}
+              style={{ fontSize: 12 }}
             >
-              <Radio value="prescription">Prescription</Radio>
-              <Radio value="walking">Walking</Radio>
+              <Radio value="prescription" style={{ fontSize: 13 }}>
+                Prescription
+              </Radio>
+              <Radio value="walking" style={{ fontSize: 13 }}>
+                Walk-In
+              </Radio>
             </Radio.Group>
           </Col>
         </Row>
@@ -2119,11 +2214,38 @@ const App = () => {
         {/* Tabs */}
         <Tabs
           defaultActiveKey="1"
-          style={{ marginTop: "2px", marginLeft: -20 }}
+          style={{ marginTop: "-4px", marginLeft: -20 }}
+          renderTabBar={(props, DefaultTabBar) => (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center", // ✅ vertical alignment
+                gap: "50px", // space between tabs and radios
+              }}
+            >
+              <DefaultTabBar {...props} />
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: 15,
+                  marginRight: 20,
+                }}
+              >
+                <span style={{ fontWeight: 600, marginRight: 18 }}>
+                  Sale Type
+                </span>
+                <Radio.Group defaultValue="cash">
+                  <Radio value="cash">Cash</Radio>
+                  <Radio value="panel">Panel</Radio>
+                </Radio.Group>
+              </div>
+            </div>
+          )}
         >
           {/* General Sale Tab */}
           <TabPane tab="General Sale" key="1">
-            <Row gutter={10} align="middle" style={{ marginBottom: "12px" }}>
+            {/* <Row gutter={10} align="middle" style={{ marginBottom: "12px" }}>
               <Col>
                 <strong>Sale Type</strong>
               </Col>
@@ -2133,50 +2255,90 @@ const App = () => {
                   <Radio value="panel">Panel</Radio>
                 </Radio.Group>
               </Col>
-            </Row>
+            </Row> */}
 
             {/* Form Inputs in One Row */}
-            <Row gutter={18} align="middle" wrap={false}>
-              <Col>
-                <Checkbox style={{ fontSize: 14 }}>Scan Prescription</Checkbox>
+            <Row
+              gutter={[16, 16]}
+              align="middle"
+              style={{ marginBottom: 0, marginTop: "-12px" }}
+            >
+              <Col xs={24} sm={12} md={3}>
+                <Checkbox style={{ fontSize: 14, lineHeight: 1.5 }}>
+                  Scan Prescription
+                </Checkbox>
               </Col>
 
-              <Col>
-                <span style={{ marginRight: 6, fontSize: 14 }}>MR #</span>
-                <Input style={{ width: 130 }} />
-              </Col>
-
-              <Col>
-                <span style={{ marginRight: 6, fontSize: 14 }}>Specialty</span>
-                <Select
-                  defaultValue="Cardiac Electrophysiologist"
-                  style={{ width: 250 }}
-                >
-                  <Option
-                    value="Cardiac Electrophysiologist"
-                    style={{ fontSize: 14 }}
+              <Col xs={24} sm={12} md={3} style={{ marginRight: 14 }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span
+                    style={{ marginRight: 6, fontSize: 14, lineHeight: 1.5 }}
                   >
-                    Cardiac Electrophysiologist
-                  </Option>
-                  <Option value="Cardiologist" style={{ fontSize: 14 }}>
-                    Cardiologist
-                  </Option>
-                  <Option value="Neurologist" style={{ fontSize: 14 }}>
-                    Neurologist
-                  </Option>
-                </Select>
+                    MR #
+                  </span>
+                  <Input style={{ flex: 1, fontSize: 12, lineHeight: 1.5 }} />
+                </div>
               </Col>
 
-              <Col>
-                <span style={{ marginRight: 6, fontSize: 14 }}>
-                  Prescribing - Consultant
-                </span>
-                <Input defaultValue="Dr Asad Ullah" style={{ width: 250 }} />
+              <Col xs={24} sm={12} md={6} style={{ marginRight: 10 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginRight: 14,
+                  }}
+                >
+                  <span
+                    style={{ marginRight: 6, fontSize: 14, lineHeight: 1.5 }}
+                  >
+                    Specialty
+                  </span>
+                  <Select
+                    defaultValue="Cardiac Electrophysiologist"
+                    style={{ flex: 1, fontSize: 12, lineHeight: 1.5 }}
+                  >
+                    <Option
+                      value="Cardiac Electrophysiologist"
+                      style={{ fontSize: 12 }}
+                    >
+                      Cardiac Electrophysiologist
+                    </Option>
+                    <Option value="Cardiologist" style={{ fontSize: 12 }}>
+                      Cardiologist
+                    </Option>
+                    <Option value="Neurologist" style={{ fontSize: 12 }}>
+                      Neurologist
+                    </Option>
+                  </Select>
+                </div>
               </Col>
 
-              <Col>
-                <span style={{ marginRight: 6, fontSize: 14 }}>Visit Date</span>
-                <DatePicker format="DD/MM/YYYY" style={{ width: 120 }} />
+              <Col xs={24} sm={12} md={7} style={{ marginRight: 10 }}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span
+                    style={{ marginRight: 6, fontSize: 14, lineHeight: 1.5 }}
+                  >
+                    Prescribing - Consultant
+                  </span>
+                  <Input
+                    defaultValue="Dr Asad Ullah"
+                    style={{ flex: 1, fontSize: 12, lineHeight: 1.5 }}
+                  />
+                </div>
+              </Col>
+
+              <Col xs={24} sm={12} md={4}>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <span
+                    style={{ marginRight: 6, fontSize: 14, lineHeight: 1.5 }}
+                  >
+                    Visit Date
+                  </span>
+                  <DatePicker
+                    format="DD/MM/YYYY"
+                    style={{ flex: 1, fontSize: 12, lineHeight: 1.5 }}
+                  />
+                </div>
               </Col>
             </Row>
           </TabPane>
