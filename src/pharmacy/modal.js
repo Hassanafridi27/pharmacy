@@ -150,7 +150,8 @@ const allergyColumns = [
     <Modal
       open={open}
       onCancel={onCancel}
-      width="1580px"
+      width="1530px"
+      // height="100%"
       footer={null}
       centered
       title="Muhammad Hammad Arif (001231255)"
@@ -403,7 +404,7 @@ const allergyColumns = [
               </Col>
             </Row>
           </div>
-          <div style={{ fontWeight: "bold", margin: "10px 0 5px" }}>
+          <div style={{ fontWeight: "bold", margin: "2px 0 5px" }}>
             Dispensing Detail
           </div>
           <Row gutter={8} style={{ marginBottom: 6 }}>
@@ -495,7 +496,12 @@ const allergyColumns = [
                   placeholder="Select Unit"
                   style={{ width: "100%", fontSize: 12, lineHeight: 1.5 }}
                 >
-                  <Select.Option value="mg">mg</Select.Option>
+                  <Select.Option
+                    value="mg"
+                    style={{ width: "100%", fontSize: 12, lineHeight: 1.5 }}
+                  >
+                    mg
+                  </Select.Option>
                   <Select.Option value="ml">ml</Select.Option>
                   <Select.Option value="g">g</Select.Option>
                   <Select.Option value="tablet">Tablet</Select.Option>
@@ -731,7 +737,9 @@ const allergyColumns = [
             </Col>
           </Row>
 
-          <div style={{ fontWeight: "bold", margin: "10px 0 5px", color:'red' }}>
+          <div
+            style={{ fontWeight: "bold", margin: "10px 0 5px", color: "red" }}
+          >
             Only for Narcotics
           </div>
 

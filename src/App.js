@@ -860,7 +860,7 @@ const PrescriptionComponent = () => {
               <TabPane tab="eShifa Job" key="eshifa">
                 <div
                   style={{
-                    height: 112, // reduced container height
+                    height: 102, // reduced container height
                     minWidth: 390, // same as before
                     padding: "8px 10px",
                     margin: 0,
@@ -1908,10 +1908,10 @@ const WalkingComponent = () => {
               <TabPane tab="eShifa Job" key="eshifa">
                 <div
                   style={{
-                    height: 112, // reduced container height
-                    minWidth: 390, // same as before
-                    padding: "8px 10px",
-                    margin: 0,
+                    // height: 90, // reduced container height
+                    // minWidth: 390, // same as before
+                    // padding: "2px 8px",
+                    // margin: 0,
                     border: "1px dashed #ccc",
                     borderRadius: 6,
                     position: "relative", // for absolute-positioning the single eye icon
