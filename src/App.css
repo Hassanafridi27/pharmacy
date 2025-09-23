@@ -94,3 +94,66 @@
 .smart-scroll-table .ant-table-body::-webkit-scrollbar-button {
   display: none;  /* 🔥 removes arrows */
 }
+
+
+.table-container {
+  max-height: 100px !important;    /* 🔥 set your fixed height */
+  overflow-y: auto;     /* scroll only when needed */
+  overflow-x: hidden;   /* no horizontal scroll */
+}
+
+/* Firefox */
+.table-container {
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.table-container::-webkit-scrollbar {
+  width: 6px;  /* slim vertical bar */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container::-webkit-scrollbar-button {
+  display: none; /* 🔥 removes arrows */
+}
+
+
+
+.medicine-container {
+  max-height: 205px !important;    /* 🔥 set your fixed height */
+  overflow-y: auto;     /* scroll only when needed */
+  overflow-x: hidden;   /* no horizontal scroll */
+}
+
+/* Firefox */
+.medicine-container {
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.medicine-container::-webkit-scrollbar {
+  width: 6px;  /* slim vertical bar */
+}
+
+.medicine-container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.medicine-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.medicine-container::-webkit-scrollbar-button {
+  display: none; /* 🔥 removes arrows */
+}

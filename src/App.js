@@ -216,14 +216,15 @@ const PrescriptionComponent = () => {
       ),
       dataIndex: "type",
       key: "type",
-      width: 90, // Reduced width here
+      width: 120, // Reduced width here
       render: (text) => <span style={{ fontSize: 9 }}>{text}</span>,
       onHeaderCell: () => ({
         style: {
           backgroundColor: "#2971A8",
         },
       }),
-      // width: '30%',
+      width: "25%",
+      height: "25%",
     },
     {
       title: (
@@ -233,14 +234,14 @@ const PrescriptionComponent = () => {
       ),
       dataIndex: "description",
       key: "description",
-      width: 200,
+      width: 180,
       render: (text) => <span style={{ fontSize: 9 }}>{text}</span>,
       onHeaderCell: () => ({
         style: {
           backgroundColor: "#2971A8",
         },
       }),
-      width: "70%",
+      width: "50%",
       height: "30%",
     },
     {
@@ -258,6 +259,7 @@ const PrescriptionComponent = () => {
           backgroundColor: "#2971A8",
         },
       }),
+      width: "25%",
     },
   ];
 
@@ -330,7 +332,7 @@ const PrescriptionComponent = () => {
   ];
 
   const highlightedStyle = { backgroundColor: "#F1F7FF" };
-  const headerStyle = { backgroundColor: "#2971A8", color: "#ffff" };
+  const headerStyle = { backgroundColor: "#2971A8", color: "#ffff", borderRadius: 5    };
   const allergyData = [
     {
       key: "1",
@@ -344,6 +346,27 @@ const PrescriptionComponent = () => {
       type: "SUB CLASS",
       description: "ANTIBIOTICS",
       severity: "Moderate",
+      render: (text) => <span style={{ fontSize: 10 }}>{text}</span>,
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE (TISSUE)",
+      severity: "Mild",
+      render: (text) => <span style={{ fontSize: 10 }}>{text}</span>,
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE (TISSUE)",
+      severity: "Mild",
+      render: (text) => <span style={{ fontSize: 10 }}>{text}</span>,
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE (TISSUE)",
+      severity: "Mild",
       render: (text) => <span style={{ fontSize: 10 }}>{text}</span>,
     },
     {
@@ -802,32 +825,30 @@ const PrescriptionComponent = () => {
                 key="allergies"
                 // style={{ marginRight: 21 }}
               >
-                <div style={{ overflow: "hidden" }}>
+                <div className="table-container">
                   <Table
                     dataSource={allergyData}
                     columns={allergyColumns}
                     pagination={false}
                     size="small"
                     bordered
-                    scroll={{ y: 160 }}
                     className="small-font-table"
                     style={{ background: "none" }}
                     locale={{ emptyText: "No lab results found" }}
-                    scrollbar={{ alwaysVisible: false }}
                   />
                 </div>
               </TabPane>
 
               {/* === Lab Results Tab === */}
               <TabPane tab="Lab Result" key="lab">
-                <div style={{ overflow: "hidden" }}>
+                <div className="table-container">
                   <Table
                     dataSource={allergyData}
                     columns={allergyColumns2}
                     pagination={false}
                     size="small"
                     bordered
-                    scroll={{ y: 160 }}
+                    // scroll={{ y: 160 }}
                     className="small-font-table"
                     style={{ background: "none" }}
                     locale={{ emptyText: "No lab results found" }}
@@ -975,7 +996,7 @@ const PrescriptionComponent = () => {
           gutter={[]}
         >
           <Col>
-            <h3 style={{ margin: 0, marginLeft: -1 }}>Medication Detail</h3>
+            <h3 style={{ marginTop: 6, marginLeft: -1, fontWeight: 600 }}>Medication Detail</h3>
           </Col>
           <Col>
             {/* <Button type="primary">Proceed</Button> */}
@@ -994,17 +1015,17 @@ const PrescriptionComponent = () => {
             </Button>
           </Col>
         </Row>
-
-        <Table
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-          className="medicine-detail-table"
-          style={{ marginTop: -6 }}
-          bordered
-          size="small"
-        />
-
+        <div className="medicine-container">
+          <Table
+            dataSource={data}
+            columns={columns}
+            pagination={false}
+            className="medicine-detail-table"
+            style={{ marginTop: 0 }}
+            bordered
+            size="small"
+          />
+        </div>
         <Row justify="end" style={{ marginTop: 0 }}>
           <Col span={24}>
             <span style={{ marginLeft: "980px" }}>
