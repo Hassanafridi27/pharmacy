@@ -992,11 +992,11 @@ const PrescriptionComponent = () => {
         <Row
           justify="space-between"
           align="middle"
-          style={{ padding: "8px 1px", marginTop: -6 }}
+          style={{ padding: "8px 1px", marginTop: -6, marginLeft: 0,  }}
           gutter={[]}
         >
           <Col>
-            <h3 style={{ marginTop: 6, marginLeft: -1, fontWeight: 600 }}>Medication Detail</h3>
+            <h3 style={{ marginTop: 6, marginLeft: 4, fontWeight: 600 }}>Medication Detail</h3>
           </Col>
           <Col>
             {/* <Button type="primary">Proceed</Button> */}
@@ -1007,7 +1007,7 @@ const PrescriptionComponent = () => {
                 width: 90,
                 height: 25,
                 fontSize: "14px",
-                marginLeft: "10px",
+                marginRight: -16,
               }}
               onClick={() => setIsModalOpen(true)}
             >
@@ -1021,7 +1021,7 @@ const PrescriptionComponent = () => {
             columns={columns}
             pagination={false}
             className="medicine-detail-table"
-            style={{ marginTop: 0 }}
+            style={{ marginTop: 0, marginLeft: 6 }}
             bordered
             size="small"
           />

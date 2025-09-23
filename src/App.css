@@ -132,6 +132,8 @@
   max-height: 205px !important;    /* 🔥 set your fixed height */
   overflow-y: auto;     /* scroll only when needed */
   overflow-x: hidden;   /* no horizontal scroll */
+    /* max-width: 220% !important;  */
+    /* background-color: #282c34; */
 }
 
 /* Firefox */

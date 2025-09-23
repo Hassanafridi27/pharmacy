@@ -142,9 +142,7 @@ const allergyColumns = [
         "FLU-Z (FLUCONAZOLE) 50 MG/SML",
             "FLU-Z (FLUCONAZOLE) 50 MG/SML",
                 "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                        "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                                "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+
     // dynamic empty inputs
   ];
 
@@ -471,7 +469,7 @@ const allergyColumns = [
                   style={{
                     fontSize: 12,
                     fontWeight: 500,
-                    marginBottom: 1,
+                    marginBottom: 0,
                   }}
                 >
                   Dose
@@ -488,7 +486,7 @@ const allergyColumns = [
                   style={{
                     fontSize: 12,
                     fontWeight: 500,
-                    marginBottom: 1,
+                    marginBottom: 0,
                   }}
                 >
                   Unit
@@ -733,7 +731,7 @@ const allergyColumns = [
             </Col>
           </Row>
 
-          <div style={{ fontWeight: "bold", margin: "10px 0 5px" }}>
+          <div style={{ fontWeight: "bold", margin: "10px 0 5px", color:'red' }}>
             Only for Narcotics
           </div>
 
