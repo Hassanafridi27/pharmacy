@@ -1,62 +1,123 @@
 import React, { useState } from "react";
-import { Modal, Input, Row, Col, Table, Button, Select } from "antd";
+import { Modal, Input, Row, Col, Table, Button, Select, Drawer } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 import SkipReasonPopup from "./skipPopup";
-import '../App.css';
+import "../App.css";
 
 const PrescriptionModal = ({ open, onCancel }) => {
-   const [skipOpen, setSkipOpen] = useState(false);
-const allergyColumns = [
-  {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Allergy Type</span>,
-    dataIndex: 'type',
-    key: 'type',
-    width: 90,  // Reduced width here
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-        // width: '30%',
-  },
-  {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Allergy Description</span>,
-    dataIndex: 'description',
-    key: 'description',
-    width: 200,
-    render: (text) => <span style={{ fontSize: 11}}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-    width: '60%',
-    height: '30%'
-  },
-  {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Severity Level</span>,
-    dataIndex: 'severity',
-    key: 'severity',
-    width: 100,
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-  },
-];
+  const [skipOpen, setSkipOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => setDrawerOpen((prev) => !prev);
+  const allergyColumns = [
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Allergy Type
+        </span>
+      ),
+      dataIndex: "type",
+      key: "type",
+      width: 90, // Reduced width here
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+      // width: '30%',
+    },
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Allergy Description
+        </span>
+      ),
+      dataIndex: "description",
+      key: "description",
+      width: 200,
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+      width: "60%",
+      height: "30%",
+    },
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Severity Level
+        </span>
+      ),
+      dataIndex: "severity",
+      key: "severity",
+      width: 100,
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+    },
+  ];
 
   const allergyData = [
-    { key: "1", type: "GENERIC", description: "FOOD-SUPPLEMENT", severity: "Moderate" },
-    { key: "2", type: "SUB CLASS", description: "ANTIBIOTICS, AMINOGLYCOSIDES", severity: "Moderate" },
-    { key: "3", type: "GENERIC", description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR", severity: "Mild" },
-        { key: "1", type: "GENERIC", description: "FOOD-SUPPLEMENT", severity: "Moderate" },
-    { key: "2", type: "SUB CLASS", description: "ANTIBIOTICS, AMINOGLYCOSIDES", severity: "Moderate" },
-    { key: "3", type: "GENERIC", description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR", severity: "Mild" },
-        { key: "1", type: "GENERIC", description: "FOOD-SUPPLEMENT", severity: "Moderate" },
-    { key: "2", type: "SUB CLASS", description: "ANTIBIOTICS, AMINOGLYCOSIDES", severity: "Moderate" },
-    { key: "3", type: "GENERIC", description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR", severity: "Mild" },
+    {
+      key: "1",
+      type: "GENERIC",
+      description: "FOOD-SUPPLEMENT",
+      severity: "Moderate",
+    },
+    {
+      key: "2",
+      type: "SUB CLASS",
+      description: "ANTIBIOTICS, AMINOGLYCOSIDES",
+      severity: "Moderate",
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR",
+      severity: "Mild",
+    },
+    {
+      key: "1",
+      type: "GENERIC",
+      description: "FOOD-SUPPLEMENT",
+      severity: "Moderate",
+    },
+    {
+      key: "2",
+      type: "SUB CLASS",
+      description: "ANTIBIOTICS, AMINOGLYCOSIDES",
+      severity: "Moderate",
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR",
+      severity: "Mild",
+    },
+    {
+      key: "1",
+      type: "GENERIC",
+      description: "FOOD-SUPPLEMENT",
+      severity: "Moderate",
+    },
+    {
+      key: "2",
+      type: "SUB CLASS",
+      description: "ANTIBIOTICS, AMINOGLYCOSIDES",
+      severity: "Moderate",
+    },
+    {
+      key: "3",
+      type: "GENERIC",
+      description: "ALTEPLASE/TISSUE-PLASMINOGEN-ACTIVATOR",
+      severity: "Mild",
+    },
   ];
 
   const labColumns = [
@@ -64,84 +125,148 @@ const allergyColumns = [
     // { title: "Test Name", dataIndex: "testName", key: "testName" },
     // { title: "Result", dataIndex: "result", key: "result" },
     // { title: "Ref - Range", dataIndex: "range", key: "range" },
-      {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Date</span>,
-    dataIndex: 'date',
-    key: 'date',
-    width: 70,  // Reduced width here
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-        // width: '30%',
-  },
-  {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Test Name</span>,
-    dataIndex: 'testName',
-    key: 'testName',
-    width: 150,
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-  },
-  {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Result</span>,
-    dataIndex: 'result',
-    key: 'result',
-    width: 70,
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-  },
     {
-    title: <span style={{ fontSize: 11, fontWeight: '600', color: '#fff' }}>Ref - Range</span>,
-    dataIndex: 'range',
-    key: 'range',
-    width: 70,
-    render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
-    onHeaderCell: () => ({
-      style: {
-        backgroundColor: '#2971A8',
-      },
-    }),
-  },
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Date
+        </span>
+      ),
+      dataIndex: "date",
+      key: "date",
+      width: 70, // Reduced width here
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+      // width: '30%',
+    },
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Test Name
+        </span>
+      ),
+      dataIndex: "testName",
+      key: "testName",
+      width: 150,
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+    },
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Result
+        </span>
+      ),
+      dataIndex: "result",
+      key: "result",
+      width: 70,
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+    },
+    {
+      title: (
+        <span style={{ fontSize: 11, fontWeight: "600", color: "#fff" }}>
+          Ref - Range
+        </span>
+      ),
+      dataIndex: "range",
+      key: "range",
+      width: 70,
+      render: (text) => <span style={{ fontSize: 11 }}>{text}</span>,
+      onHeaderCell: () => ({
+        style: {
+          backgroundColor: "#2971A8",
+        },
+      }),
+    },
   ];
 
   const labData = [
-    { key: "1", date: "11/04/2024", testName: "PARACETAMOL+TRAMADOL", result: "55.8", range: "45.0 - 68.0" },
-    { key: "2", date: "11/04/2024", testName: "PANADOL-CF", result: "66.2", range: "66.0 - 100.0" },
-    { key: "3", date: "11/04/2024", testName: "BECLOMETHASONE+SALBUTAMOL", result: "77.9", range: "22.6 - 101.5" },
-        { key: "1", date: "11/04/2024", testName: "PARACETAMOL+TRAMADOL", result: "55.8", range: "45.0 - 68.0" },
-    { key: "2", date: "11/04/2024", testName: "PANADOL-CF", result: "66.2", range: "66.0 - 100.0" },
-    { key: "3", date: "11/04/2024", testName: "BECLOMETHASONE+SALBUTAMOL", result: "77.9", range: "22.6 - 101.5" },
-        { key: "1", date: "11/04/2024", testName: "PARACETAMOL+TRAMADOL", result: "55.8", range: "45.0 - 68.0" },
-    { key: "2", date: "11/04/2024", testName: "PANADOL-CF", result: "66.2", range: "66.0 - 100.0" },
-    { key: "3", date: "11/04/2024", testName: "BECLOMETHASONE+SALBUTAMOL", result: "77.9", range: "22.6 - 101.5" },
+    {
+      key: "1",
+      date: "11/04/2024",
+      testName: "PARACETAMOL+TRAMADOL",
+      result: "55.8",
+      range: "45.0 - 68.0",
+    },
+    {
+      key: "2",
+      date: "11/04/2024",
+      testName: "PANADOL-CF",
+      result: "66.2",
+      range: "66.0 - 100.0",
+    },
+    {
+      key: "3",
+      date: "11/04/2024",
+      testName: "BECLOMETHASONE+SALBUTAMOL",
+      result: "77.9",
+      range: "22.6 - 101.5",
+    },
+    {
+      key: "1",
+      date: "11/04/2024",
+      testName: "PARACETAMOL+TRAMADOL",
+      result: "55.8",
+      range: "45.0 - 68.0",
+    },
+    {
+      key: "2",
+      date: "11/04/2024",
+      testName: "PANADOL-CF",
+      result: "66.2",
+      range: "66.0 - 100.0",
+    },
+    {
+      key: "3",
+      date: "11/04/2024",
+      testName: "BECLOMETHASONE+SALBUTAMOL",
+      result: "77.9",
+      range: "22.6 - 101.5",
+    },
+    {
+      key: "1",
+      date: "11/04/2024",
+      testName: "PARACETAMOL+TRAMADOL",
+      result: "55.8",
+      range: "45.0 - 68.0",
+    },
+    {
+      key: "2",
+      date: "11/04/2024",
+      testName: "PANADOL-CF",
+      result: "66.2",
+      range: "66.0 - 100.0",
+    },
+
   ];
 
-    const medicines = [
+  const medicines = [
     "FLU-Z (FLUCONAZOLE) 50 MG/SML",
     "FLU-Z (FLUCONAZOLE) 50 MG/SML",
     "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-        "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-            "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                        "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                            "FLU-Z (FLUCONAZOLE) 50 MG/SML",
     "FLU-Z (FLUCONAZOLE) 50 MG/SML",
     "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-        "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-            "FLU-Z (FLUCONAZOLE) 50 MG/SML",
-                "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
+    "FLU-Z (FLUCONAZOLE) 50 MG/SML",
 
     // dynamic empty inputs
   ];
@@ -150,14 +275,15 @@ const allergyColumns = [
     <Modal
       open={open}
       onCancel={onCancel}
-      width="1530px"
+      width="1280px"
       // height="100%"
       footer={null}
       centered
       title="Muhammad Hammad Arif (001231255)"
       rootClassName="custom-administer"
+      // style={{ backgroundColor: "#F1F7FF" }}
     >
-      <Row gutter={4} style={{ padding: "4px 10px", marginTop: -10 }}>
+      <Row gutter={4} style={{ padding: "4px 2px", marginTop: -10 }}>
         {/* Left side (Medication List) */}
         <Col
           span={5}
@@ -172,7 +298,7 @@ const allergyColumns = [
           {/* Header with count */}
           <div style={{ fontWeight: "bold", marginBottom: 5, marginTop: 2 }}>
             Medication Name{" "}
-            <span style={{ color: "#020202ff", marginLeft: 150 }}>
+            <span style={{ color: "#020202ff", marginLeft: 220 }}>
               0/{medicines.length}
             </span>
           </div>
@@ -196,9 +322,15 @@ const allergyColumns = [
         </Col>
 
         {/* Middle Section */}
-        <Col span={12}>
-          <div style={{ backgroundColor: "#F1F7FF", height: 200 }}>
-            <div style={{ fontWeight: 700, marginBottom: 5, fontSize: 16 }}>
+        <Col span={19} style={{ padding: "0px" }}>
+          <div
+            style={{
+              backgroundColor: "#F1F7FF",
+              height: 180,
+              padding: "4px",
+            }}
+          >
+            <div style={{ fontWeight: 700, marginBottom: 1, fontSize: 16 }}>
               Prescription Detail
             </div>
             <Row gutter={2} style={{ marginBottom: 6 }}>
@@ -249,16 +381,18 @@ const allergyColumns = [
                       fontSize: 12,
                       lineHeight: 1.5,
                       fontWeight: 500,
-                      marginBottom: 0,
+                      // marginBottom: 0,
                     }}
                   >
                     Strength/Unit
                   </div>
                   <Input
                     placeholder="Strength/Unit"
-                    // addonAfter={<div style={{}}>Unit</div>}
+                    addonAfter={
+                      <div style={{ lineHeight: 1.5, fontSize: 12 }}>Unit</div>
+                    }
                     style={{
-                      width: 180,
+                      width: 240,
                       background: "white",
                       fontSize: 12,
                       lineHeight: 1.5,
@@ -273,19 +407,27 @@ const allergyColumns = [
               <Col span={6}>
                 <div style={{ marginBottom: 4 }}>
                   <div
-                    style={{ fontSize: 12, fontWeight: 500, marginBottom: 0 }}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 500,
+                      marginBottom: 0,
+                      lineHeight: 1.5,
+                    }}
                   >
                     Dose
                   </div>
                   <Input
                     placeholder="Dose"
-                    // addonAfter={<div>Tab/s</div>}
+                    addonAfter={
+                      <div style={{ lineHeight: 1.5, fontSize: 12 }}>Tab/s</div>
+                    }
                     value=""
                     disabled
                     style={{
                       background: "white",
                       fontSize: 12,
                       lineHeight: 1.5,
+                      // width: 230
                     }}
                   />
                 </div>
@@ -305,6 +447,7 @@ const allergyColumns = [
                     style={{
                       background: "#F8F8F8",
                       fontSize: 12,
+
                       lineHeight: 1.5,
                     }}
                   />
@@ -363,6 +506,7 @@ const allergyColumns = [
                     disabled
                     style={{
                       background: "#F8F8F8",
+                      width: 155,
                       fontSize: 12,
                       lineHeight: 1.5,
                     }}
@@ -396,6 +540,7 @@ const allergyColumns = [
                     disabled
                     style={{
                       background: "#F8F8F8",
+                      width: 915,
                       fontSize: 12,
                       lineHeight: 1.5,
                     }}
@@ -404,10 +549,10 @@ const allergyColumns = [
               </Col>
             </Row>
           </div>
-          <div style={{ fontWeight: "bold", margin: "2px 0 5px" }}>
+          <div style={{ fontWeight: "bold", padding: "4px" }}>
             Dispensing Detail
           </div>
-          <Row gutter={8} style={{ marginBottom: 6 }}>
+          <Row gutter={8} style={{ marginBottom: 6, padding: "4px" }}>
             <Col span={12}>
               <div style={{ marginBottom: 6 }}>
                 <div
@@ -457,13 +602,13 @@ const allergyColumns = [
                 </div>
                 <Input
                   placeholder="Pack Size"
-                  style={{ fontSize: 12, lineHeight: 1.5 }}
+                  style={{ fontSize: 12, lineHeight: 1.5, width: 233 }}
                 />
               </div>
             </Col>
           </Row>
 
-          <Row gutter={5} style={{ marginBottom: 6 }}>
+          <Row gutter={5} style={{ marginBottom: 6, padding: "4px" }}>
             <Col span={5}>
               <div style={{ marginBottom: 6 }}>
                 <div
@@ -552,6 +697,7 @@ const allergyColumns = [
                     fontSize: 12,
                     fontWeight: 500,
                     marginBottom: 1,
+                    lineHeight: 1.5,
                   }}
                 >
                   QOH
@@ -559,7 +705,7 @@ const allergyColumns = [
                 <Input
                   placeholder="QOH"
                   disabled
-                  style={{ background: "#F8F8F8" }}
+                  style={{ background: "#F8F8F8", lineHeight: 1.5 }}
                 />
               </div>
             </Col>
@@ -571,23 +717,28 @@ const allergyColumns = [
                     fontSize: 12,
                     fontWeight: 500,
                     marginBottom: 1,
+                    lineHeight: 1.5,
                   }}
                 >
                   Dispensing Day
                 </div>
-                <Input placeholder="Dispensing Day" />
+                <Input
+                  placeholder="Dispensing Day"
+                  style={{ lineHeight: 1.5, width: 150 }}
+                />
               </div>
             </Col>
           </Row>
 
-          <Row gutter={8} style={{ marginBottom: 6 }}>
+          <Row gutter={8} style={{ marginBottom: 6, padding: "4px" }}>
             <Col span={4}>
               <div style={{ marginBottom: 6 }}>
                 <div
                   style={{
                     fontSize: 12,
                     fontWeight: 500,
-                    marginBottom: 1, // reduced gap
+                    // marginBottom: 1, // reduced gap
+                    lineHeight: 1.5,
                   }}
                 >
                   Sugg. Qty
@@ -595,7 +746,7 @@ const allergyColumns = [
                 <Input
                   placeholder="Sugg. Qty"
                   disabled
-                  style={{ background: "#F8F8F8" }}
+                  style={{ background: "#F8F8F8", lineHeight: 1.5 }}
                 />
               </div>
             </Col>
@@ -606,7 +757,8 @@ const allergyColumns = [
                   style={{
                     fontSize: 12,
                     fontWeight: 500,
-                    marginBottom: 1, // reduced gap
+                    // marginBottom: 1, // reduced gap
+                    lineHeight: 1.5,
                   }}
                 >
                   Issued Qty
@@ -614,7 +766,7 @@ const allergyColumns = [
                 <Input
                   placeholder="Issued Qty"
                   disabled
-                  style={{ background: "#F8F8F8" }}
+                  style={{ background: "#F8F8F8", lineHeight: 1.5 }}
                 />
               </div>
             </Col>
@@ -624,17 +776,21 @@ const allergyColumns = [
                   style={{
                     fontSize: 12,
                     fontWeight: 500,
-                    marginBottom: 1, // tighter gap
+                    // marginBottom: 1, // tighter gap
+                    lineHeight: 1.5,
                   }}
                 >
                   Remarks
                 </div>
-                <Input placeholder="Remarks" />
+                <Input
+                  placeholder="Remarks"
+                  style={{ lineHeight: 1.5, width: 655 }}
+                />
               </div>
             </Col>
           </Row>
 
-          <Row gutter={8} style={{ marginBottom: 6 }}>
+          <Row gutter={8} style={{ marginBottom: 6, padding: "4px" }}>
             {/* Discount % */}
             <Col span={4}>
               <div style={{ marginBottom: 6 }}>
@@ -647,7 +803,10 @@ const allergyColumns = [
                 >
                   Discount %
                 </div>
-                <Input placeholder="Discount %" />
+                <Input
+                  placeholder="Discount %"
+                  style={{ background: "#F8F8F8", lineHeight: 1.5 }}
+                />
               </div>
             </Col>
 
@@ -659,11 +818,12 @@ const allergyColumns = [
                     fontSize: 12,
                     fontWeight: 500,
                     marginBottom: 1, // reduced gap
+                    lineHeight: 1.5,
                   }}
                 >
                   Dis. Amt
                 </div>
-                <Input placeholder="Dis. Amt" />
+                <Input placeholder="Dis. Amt" style={{ lineHeight: 1.5 }} />
               </div>
             </Col>
 
@@ -685,11 +845,12 @@ const allergyColumns = [
                       fontSize: 12,
                       fontWeight: 500,
                       marginBottom: 1,
+                      lineHeight: 1.5,
                     }}
                   >
                     Avg Cost
                   </div>
-                  <Input placeholder="Avg Cost" />
+                  <Input placeholder="Avg Cost" style={{ lineHeight: 1.5 }} />
                 </div>
 
                 {/* Total Cost */}
@@ -699,11 +860,12 @@ const allergyColumns = [
                       fontSize: 12,
                       fontWeight: 500,
                       marginBottom: 1,
+                      lineHeight: 1.5,
                     }}
                   >
                     Total Cost
                   </div>
-                  <Input placeholder="Total Cost" />
+                  <Input placeholder="Total Cost" style={{ lineHeight: 1.5 }} />
                 </div>
 
                 {/* Current Price */}
@@ -713,11 +875,15 @@ const allergyColumns = [
                       fontSize: 12,
                       fontWeight: 500,
                       marginBottom: 1,
+                      lineHeight: 1.5,
                     }}
                   >
                     Current Price
                   </div>
-                  <Input placeholder="Current Price" />
+                  <Input
+                    placeholder="Current Price"
+                    style={{ lineHeight: 1.5 }}
+                  />
                 </div>
 
                 {/* Total Price */}
@@ -727,23 +893,36 @@ const allergyColumns = [
                       fontSize: 12,
                       fontWeight: 500,
                       marginBottom: 1,
+                      lineHeight: 1.5,
                     }}
                   >
                     Total Price
                   </div>
-                  <Input placeholder="Total Price" />
+                  <Input
+                    placeholder="Total Price"
+                    style={{ lineHeight: 1.5 }}
+                  />
                 </div>
               </div>
             </Col>
           </Row>
 
           <div
-            style={{ fontWeight: "bold", margin: "10px 0 5px", color: "red" }}
+            style={{
+              fontWeight: "bold",
+              margin: "10px 0 5px",
+              padding: "4px",
+              color: "red",
+            }}
           >
             Only for Narcotics
           </div>
 
-          <Row justify="space-between" align="middle" style={{ marginTop: 12 }}>
+          <Row
+            justify="space-between"
+            align="middle"
+            style={{ marginTop: 10, padding: "4px" }}
+          >
             {/* Left side inputs */}
             <Col>
               <Row gutter={12}>
@@ -755,13 +934,14 @@ const allergyColumns = [
                         fontSize: 12,
                         fontWeight: 500,
                         marginBottom: 4,
+                        lineHeight: 1.5,
                       }}
                     >
                       Prescribed Quantity
                     </div>
                     <Input
                       placeholder="Prescribed Quantity"
-                      style={{ width: 180 }}
+                      style={{ width: 180, lineHeight: 1.5 }}
                     />
                   </div>
                 </Col>
@@ -774,11 +954,15 @@ const allergyColumns = [
                         fontSize: 12,
                         fontWeight: 500,
                         marginBottom: 4,
+                        lineHeight: 1.5,
                       }}
                     >
                       Per Day Dose
                     </div>
-                    <Input placeholder="Per Day Dose" style={{ width: 180 }} />
+                    <Input
+                      placeholder="Per Day Dose"
+                      style={{ width: 180, lineHeight: 1.5 }}
+                    />
                   </div>
                 </Col>
               </Row>
@@ -800,28 +984,102 @@ const allergyColumns = [
         </Col>
 
         {/* Right Section */}
-        <Col span={7} style={{ marginTop: 10 }}>
-          <Table
+        {/* <Col span={7} style={{ marginTop: 10 }}> */}
+        {/* <Table
             columns={allergyColumns}
             dataSource={allergyData}
             size="small"
             pagination={false}
-            bordered
-            // className="custom-administer"
-          />
-
+          /> */}
+        {/* 
           <div style={{ fontWeight: "bold", margin: "20px 0 5px 0" }}>
             Lab Result
-          </div>
-          <Table
+          </div> */}
+        {/* <Table
             columns={labColumns}
             dataSource={labData}
             size="small"
             pagination={false}
             style={{ marginTop: 0 }}
             bordered
+          /> */}
+        {/* </Col> */}
+        <div
+          onClick={toggleDrawer}
+          style={{
+            position: "absolute",
+            top: "40%",
+            right: 0,
+            width: "18px",
+            height: "72px",
+            background: "#2971A8",
+            color: "#fff",
+            fontSize: 12,
+            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            borderRadius: "6px 0 0 6px",
+            writingMode: "vertical-rl",
+            textOrientation: "mixed",
+            zIndex: 1051, // above modal content
+          }}
+        >
+          {drawerOpen ? "<" : ">"}
+        </div>
+
+        {/* Drawer (overlapping, not consuming cols) */}
+        <Drawer
+          placement="right"
+          closable={false} // disable default close
+          onClose={() => setDrawerOpen(false)}
+          open={drawerOpen}
+          getContainer={false}
+          width={500}
+          style={{ position: "absolute" }}
+          title={
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              {/* <span>Patient Data</span> */}
+              <CloseOutlined
+                onClick={() => setDrawerOpen(false)}
+                style={{
+                  cursor: "pointer",
+                  fontSize: 18,
+                  marginLeft: "auto", // ✅ pushes it to the right
+                }}
+              />
+            </div>
+          }
+        >
+          <div style={{ fontWeight: "bold", marginBottom: 0, marginTop: -18 }}>
+            Allergies
+          </div>
+          <Table
+            columns={allergyColumns}
+            dataSource={allergyData}
+            size="small"
+            pagination={false}
+            bordered
           />
-        </Col>
+
+          <div style={{ fontWeight: "bold", margin: "6px 0 2px" }}>
+            Lab Results
+          </div>
+          <Table
+            columns={labColumns}
+            dataSource={labData}
+            size="small"
+            pagination={false}
+            bordered
+          />
+        </Drawer>
       </Row>
       <SkipReasonPopup open={skipOpen} onClose={() => setSkipOpen(false)} />
     </Modal>
