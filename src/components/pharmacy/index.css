@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.medicine-detail-table :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-title, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-footer, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-cell, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-thead>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small .ant-table-tbody>tr>td, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small tfoot>tr>th, :where(.css-dev-only-do-not-override-xepvsj).ant-table-wrapper .ant-table.ant-table-small tfoot>tr>td {
+    padding: 2px 8px  !important;
+}
+
+.custom-administer .ant-modal-header {
+  background-color: #4e8dbd;
+  padding: 12px 18px;
+}
+
+.custom-administer .ant-modal-title {
+  color: #fff;       /* <-- This will change the text color */
+  font-weight: 500;  /* optional, make it look better */
+}
+
+.custom-administer .ant-modal-content {
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0; 
+}
+
+.custom-administer .ant-modal-close-x {
+  color: white !important;
+}
+
+
+.ant-table-cell {
+  padding: 6px 8px !important;  /* adjust as you like */
+}
+
+.smart-scroll-table .ant-table-body {
+  scrollbar-width: thin;              /* Firefox */
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.smart-scroll-table .ant-table-body::-webkit-scrollbar {
+  width: 6px;   /* slim bar */
+  height: 6px;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.smart-scroll-table .ant-table-body::-webkit-scrollbar-button {
+  display: none;  /* 🔥 removes arrows */
+}
+
+
+.table-container {
+  max-height: 100px !important;    /* 🔥 set your fixed height */
+  overflow-y: auto;     /* scroll only when needed */
+  overflow-x: hidden;   /* no horizontal scroll */
+}
+
+/* Firefox */
+.table-container {
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.table-container::-webkit-scrollbar {
+  width: 6px;  /* slim vertical bar */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.table-container::-webkit-scrollbar-button {
+  display: none; /* 🔥 removes arrows */
+}
+
+
+
+.medicine-container {
+  max-height: 205px !important;    /* 🔥 set your fixed height */
+  overflow-y: auto;     /* scroll only when needed */
+  overflow-x: hidden;   /* no horizontal scroll */
+    /* max-width: 220% !important;  */
+    /* background-color: #282c34; */
+}
+
+/* Firefox */
+.medicine-container {
+  scrollbar-width: thin;
+  scrollbar-color: #a8a8a8 transparent;
+}
+
+/* Chrome, Edge, Safari */
+.medicine-container::-webkit-scrollbar {
+  width: 6px;  /* slim vertical bar */
+}
+
+.medicine-container::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 3px;
+}
+
+.medicine-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.medicine-container::-webkit-scrollbar-button {
+  display: none; /* 🔥 removes arrows */
+}
+
+
+/* For the selected value inside input */
+.ant-select-selector {
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}

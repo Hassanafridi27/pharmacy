@@ -26,11 +26,11 @@ const SkipReasonPopup = ({ open, onClose }) => {
       centered
       width={500}
       title="Add Not Dispensing Reason"
-        rootClassName="custom-administer"
+      rootClassName="custom-administer"
     >
       {/* Checkboxes */}
       <Checkbox.Group
-        style={{ width: "100%", padding: "4px 10px", }}
+        style={{ width: "100%", padding: "4px 10px" }}
         value={checkedValues}
         onChange={(vals) => setCheckedValues(vals)}
       >
@@ -44,48 +44,47 @@ const SkipReasonPopup = ({ open, onClose }) => {
       </Checkbox.Group>
 
       {/* Footer */}
-{/* Footer */}
-<div
-  style={{
-    marginTop: 12,
-    padding: "10px 0",          // proper vertical padding
-    textAlign: "center",
-    backgroundColor: "#F1F7FF", // footer background
-    borderTop: "1px solid #ddd", // subtle top border
-    position: "relative",
-    left: 0,
-    right: 0,
-  }}
->
-  <Button
-    style={{
-      marginRight: 12,
-      backgroundColor: "#008E57",
-      color: "white",
-      border: "none",
-      width: 60,
-      height: 28,
-      borderRadius: 2,
-    }}
-    onClick={handleSave}
-  >
-    Save
-  </Button>
-  <Button
-    style={{
-      backgroundColor: "#E2E2E2",
-      color: "#000",
-      border: "none",
-      width: 60,
-      height: 28,
-      borderRadius: 2,
-    }}
-    onClick={onClose}
-  >
-    Cancel
-  </Button>
-</div>
-
+      {/* Footer */}
+      <div
+        style={{
+          marginTop: 12,
+          padding: "10px 0", // proper vertical padding
+          textAlign: "center",
+          backgroundColor: "#F1F7FF", // footer background
+          borderTop: "1px solid #ddd", // subtle top border
+          position: "relative",
+          left: 0,
+          right: 0,
+        }}
+      >
+        <Button
+          style={{
+            marginRight: 12,
+            backgroundColor: "#008E57",
+            color: "white",
+            border: "none",
+            width: 60,
+            height: 28,
+            borderRadius: 2,
+          }}
+          onClick={handleSave}
+        >
+          Save
+        </Button>
+        <Button
+          style={{
+            backgroundColor: "#E2E2E2",
+            color: "#000",
+            border: "none",
+            width: 60,
+            height: 28,
+            borderRadius: 2,
+          }}
+          onClick={onClose}
+        >
+          Cancel
+        </Button>
+      </div>
     </Modal>
   );
 };

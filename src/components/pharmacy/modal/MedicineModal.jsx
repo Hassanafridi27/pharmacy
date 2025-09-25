@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Modal, Input, Row, Col, Table, Button, Select, Drawer } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import SkipReasonPopup from "./skipPopup";
-import "../App.css";
+import SkipReasonPopup from "./SkipModal";
+import "../index.css";
 
 const PrescriptionModal = ({ open, onCancel }) => {
   const [skipOpen, setSkipOpen] = useState(false);
@@ -249,7 +249,6 @@ const PrescriptionModal = ({ open, onCancel }) => {
       result: "66.2",
       range: "66.0 - 100.0",
     },
-
   ];
 
   const medicines = [
